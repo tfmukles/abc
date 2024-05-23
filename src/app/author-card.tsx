@@ -1,7 +1,9 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
 import Image from "next/image";
+import path from "path";
 import { icons } from "./icons";
 import { Author } from "./type";
 
@@ -18,11 +20,20 @@ export default function AuthorCard(author: Author) {
   } = author;
 
   const socialIcons = Object.entries(social);
+  const profilePicture = path.basename(image);
 
   return (
     <TableRow key={author.userName}>
       <TableCell width={250} className="font-medium">
-        {fullName} <b>({created})</b>
+        <div className="flex">
+          <Avatar>
+            <AvatarImage src={`/authors/profile/${profilePicture}`} />
+            <AvatarFallback>{fullName.slice(0, 2)}</AvatarFallback>
+          </Avatar>
+          <p>
+            {fullName} <b>({created})</b>
+          </p>
+        </div>
       </TableCell>
       <TableCell>
         <p className="font-medium">{description}</p>
