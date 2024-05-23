@@ -25,7 +25,7 @@ export default function AuthorCard(author: Author) {
   return (
     <TableRow key={author.userName}>
       <TableCell width={250} className="font-medium">
-        <div className="flex">
+        <div className="flex items-center space-x-2">
           <Avatar>
             <AvatarImage src={`/authors/profile/${profilePicture}`} />
             <AvatarFallback>{fullName.slice(0, 2)}</AvatarFallback>
